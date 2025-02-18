@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *front=0;
+struct node *rear=0;
+struct node *temp,*newnode;
+
+void insertion(int n){
+    newnode=malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=0;
+    if (front==0 && rear==0){
+        front=rear=newnode;
+
+    }
+    else{
+        rear->next=newnode;
+        rear=newnode;
+    }
+
+}
+void deque(){
+    temp=front;
+    front=front->next;
+    free(temp);
+}
+void display(){
+    temp=front;
+    while(temp!=0){
+        printf("%d",temp->data);
+        temp=temp->next;
+    }
+}
+int main(){
+    insertion(6);
+    insertion(9);
+    display();
+    printf("\n");
+    deque();
+    display();
+}
