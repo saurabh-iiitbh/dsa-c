@@ -1,0 +1,46 @@
+#include<stdio.h>
+#define N 5
+int queue[5];
+int front=-1;
+int rear=-1;
+void insertion(int n){
+    if(rear==N-1){
+        printf("Overflow");
+    }
+    else if(rear==-1 && front==-1){
+        rear=front=0;
+        queue[rear]=n;
+    }
+    else{
+        rear++;
+        queue[rear]=n;
+    }
+}
+void dequeu(){
+    if(front==-1 && rear==-1){
+        printf("Underflow");
+    }
+    else if(front==rear){
+        front=rear=-1;
+        
+    }
+    else{
+        printf("Deleted element:%d\n",queue[front]);
+        front++;        
+    }
+}
+void display(){
+    for(int i=front;i<=rear;i++){
+        printf("%d ",queue[i]);
+    }
+}
+void main(){
+    insertion(7);
+    insertion(8);
+    insertion(9);
+    display();
+    dequeu();
+    // display();
+   
+    
+}
