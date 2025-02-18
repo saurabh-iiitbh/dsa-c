@@ -1,0 +1,63 @@
+#include<stdio.h>
+#define N 5
+int queue[N];
+int front = -1;
+int rear = -1;
+
+void insertion(int n) {
+    // If the queue is empty
+    if (front == -1 && rear == -1) {
+        front = rear = 0;
+        queue[rear] = n;
+    }
+    // If the queue is full
+    else if ((rear + 1) % N == front) {
+        printf("Queue is Full\n");
+    }
+    else {
+        rear = (rear + 1) % N;
+        queue[rear] = n;
+    }
+}
+
+void deque() {
+    if (front == -1 && rear == -1) {
+        printf("Queue is Empty\n");
+    }
+    // If there's only one element in the queue
+    else if (front == rear) {
+        printf("Deleted element: %d\n", queue[front]);
+        front = rear = -1; // Reset the queue to empty
+    }
+    else {
+        printf("Deleted element: %d\n", queue[front]);
+        front = (front + 1) % N;
+    }
+}
+
+void display() {
+    if (front == -1 && rear == -1) {
+        printf("Queue is Empty\n");
+    } else {
+        int i = front;
+        while (i != rear) {
+            printf("%d ", queue[i]);
+            i = (i + 1) % N;
+        }
+        printf("%d\n", queue[rear]);  // Print the rear element
+    }
+}
+
+int main() {
+    insertion(7);
+    insertion(8);
+    insertion(9);
+    display();  // Output: 7 8 9
+    deque();    // Output: Deleted element: 7
+    display();  // Output: 8 9
+    deque();    // Output: Deleted element: 8
+    display();  // Output: 9
+    deque();    // Output: Deleted element: 9
+    display();  // Output: Queue is Empty
+    return 0;
+}
