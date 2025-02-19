@@ -30,12 +30,12 @@ void enqueuefront(int n){
         printf("Queue is full");
     }
     else if(front==0){
-        front==N-1;
-        queue[rear]=n;
+        front=N-1;
+        queue[front]=n;
     }
     else{
         front--;
-        queue[rear]=n;
+        queue[front]=n;
     } 
 }
 void display(){
@@ -47,10 +47,17 @@ void display(){
     printf("%d",queue[rear]);
 }
 int main(){
-    
-   
-    enqueuefront(6);
-    enqueuerear(7);
+    enqueuefront(3);
     enqueuefront(5);
+    enqueuefront(6);
+    display();
+    printf("\n");
+    enqueuerear(9);
+    display();
+    printf("\n");
+    enqueuerear(9);
+    display();
+    printf("\n");
+    enqueuefront(9);
     display();
 }
