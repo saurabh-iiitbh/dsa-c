@@ -1,0 +1,56 @@
+#include<stdio.h>
+#define N 5
+int queue[5];
+int front=-1;
+int rear=-1;
+void enqueuerear(int n){
+    if(rear==-1 && front==-1){
+        rear=front=0;
+        queue[rear]=n;
+    }
+    else if(rear==N-1 && front ==0){
+        printf("Queue is full");
+    }
+    else if(rear==N-1){
+        rear=(rear+1)%N;
+        queue[rear]=n;
+    }
+    else{
+        rear++;
+        queue[rear]=n;
+    }
+}
+void enqueuefront(int n){
+    if(rear==-1 && front==-1){
+        rear=front=0;
+        queue[front]=n;
+        
+    }
+    else if(front==0 && rear ==N-1){
+        printf("Queue is full");
+    }
+    else if(front==0){
+        front==N-1;
+        queue[rear]=n;
+    }
+    else{
+        front--;
+        queue[rear]=n;
+    } 
+}
+void display(){
+    int i=front;
+    while(i!=rear){
+        printf("%d",queue[i]);
+        i=(i+1)%N;
+    }
+    printf("%d",queue[rear]);
+}
+int main(){
+    
+   
+    enqueuefront(6);
+    enqueuerear(7);
+    enqueuefront(5);
+    display();
+}
